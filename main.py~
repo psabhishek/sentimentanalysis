@@ -1,0 +1,50 @@
+import sys
+import json
+
+def lines(fp):
+    print str(len(fp.readlines()))
+
+def main():
+    pos_file = open(sys.argv[1], 'r')
+    neg_file = open(sys.argv[2], 'r')
+    tweet_file = open(sys.argv[3], 'r')
+    
+    # construct a dict
+
+    # for each of the line, extract the tweet and then calculate the score
+    i = 0
+    with open(sys.argv[3], 'r') as f:
+        for line in f:
+                print line
+                print getpos_score(line)
+                print getneg_score(line)
+
+#def construct_dict(sent_file):
+#	scores = {} # initialize an empty dictionary
+#	for line in sent_file:
+#	  term, score  = line.split("\t")  # The file is tab-delimited. "\t" means "tab character"
+#	  scores[term] = int(score)  # Convert the score to an integer.
+#	return scores
+
+## given the dict and a single tweet, return the score of this tweet
+def getpos_score(tweet):
+	score = 0
+	for word in tweet.split(" "):
+                with open(sys.argv[1], 'r') as f:
+                        for line in f:
+		                if word.lower() in line.split():
+                                        #print word
+			                score+=1
+	return score
+def getneg_score(tweet):
+	score = 0
+	for word in tweet.split(" "):
+                with open(sys.argv[2], 'r') as f:
+                        for line in f:
+		                if word.lower() in line.split():
+                                        #print word
+			                score+=1
+	return score
+
+if __name__ == '__main__':
+    main()
